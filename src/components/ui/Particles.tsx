@@ -5,7 +5,7 @@ export default function Particles() {
     <div className="absolute inset-0 z-20 overflow-hidden pointer-events-none">
       
       {/* partículas */}
-      {[...Array(25)].map((_, i) => (
+      {[...Array(120)].map((_, i) => (
         <span
           key={i}
           className="particle"
