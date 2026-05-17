@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function Header() {
+export default function Header({ onOpenContact }: { onOpenContact: () => void }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -22,30 +22,32 @@ export default function Header() {
       <header
         className={`
           fixed top-0 left-0 w-full z-50 transition-all duration-300
-          ${scrolled 
-            ? "bg-white/70 backdrop-blur-xl shadow-md py-3" 
+          ${scrolled
+            ? "bg-white/70 backdrop-blur-xl shadow-md py-3"
             : "bg-transparent py-5"}
         `}
       >
         <div className="flex items-center justify-between px-6 mx-auto max-w-7xl">
 
           {/* LOGO */}
-         <motion.img
-          src="/images/header/vyntra1.png"
-          className="object-contain w-auto h-24 sm:h-8 md:h-24"
-          alt="Vyntra"
-        />
+          <motion.img
+            src="/images/header/vyntra1.png"
+            className="object-contain w-auto h-24 sm:h-8 md:h-24"
+            alt="Vyntra"
+          />
 
           {/* NAV DESKTOP */}
           <nav className="items-center hidden gap-8 text-sm text-gray-700 md:flex">
             <a href="#" className="text-xl font-semibold hover:text-primary">Inicio</a>
             <a href="#" className="text-xl font-semibold hover:text-primary">Experiencia Interactiva</a>
             <a href="#" className="text-xl font-semibold hover:text-primary">Servicios</a>
-            <a href="#" className="text-xl font-semibold hover:text-primary">Contacto</a>
+            <button onClick={onOpenContact} className="text-xl font-semibold hover:text-primary">
+              Contacto
+            </button>
           </nav>
 
           {/* CTA DESKTOP */}
-           <button className="
+          <button className="
               px-6 py-3 
               bg-primary text-white 
               rounded-xl 
@@ -85,9 +87,11 @@ export default function Header() {
             <a href="#" onClick={() => setOpen(false)}>Inicio</a>
             <a href="#" onClick={() => setOpen(false)}>Experiencia Interactiva</a>
             <a href="#" onClick={() => setOpen(false)}>Servicios</a>
-            <a href="#" onClick={() => setOpen(false)}>Contacto</a>
+            <button onClick={onOpenContact} className="text-lg hover:text-primary">
+              Contacto
+            </button>
 
-             <button className="
+            <button className="
               px-6 py-3 
               bg-primary text-white 
               rounded-xl 
